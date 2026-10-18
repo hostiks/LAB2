@@ -2,12 +2,11 @@ import csv
 import random
 import xml.etree.ElementTree as ET
 
-file_books = open("books.csv", encoding="cp1251") #преобразуем строки в байты
+file_books = open("books.csv", encoding="cp1251")
 reader = csv.reader(file_books, delimiter=";") #читаем файл, учитывая что столбцы разделены ;
 all_rows = list(reader) #получаем матрицу
 file_books.close()
 
-header = all_rows[0]
 books = all_rows[1:]
 COL_TITLE = 1
 COL_AUTHOR = 3
@@ -42,10 +41,8 @@ user_author = input("Введите автора: ")
 result = search_by_author(user_author, 200)
 print("Найдено записей:", len(result))
 
-shown = 0
 for book in result:
     print("-", book[COL_AUTHOR], "|", book[COL_TITLE], "| цена:", book[COL_PRICE])
-    shown +=1
 print()
 
 
@@ -64,7 +61,7 @@ for book in books:
         books_with_author.append(book)
 
 chosen = random.sample(books_with_author, 20) #выбираем рандомные элементы
-out_file = open("references.txt", "w") #создаем список в файле
+out_file = open("references.txt", "w")
 number = 1  # номер строки
 for book in chosen:
     reference = make_reference(book)
